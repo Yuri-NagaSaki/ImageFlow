@@ -40,7 +40,7 @@ jobs:
           go build -o imageflow-${{ matrix.binary_suffix }} main.go
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: imageflow-${{ matrix.binary_suffix }}
           path: imageflow-${{ matrix.binary_suffix }}
