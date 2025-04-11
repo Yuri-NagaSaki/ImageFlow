@@ -18,26 +18,28 @@ const isStaticExport = !process.env.NEXT_PUBLIC_API_URL;
 
 // Parse remote patterns to extract protocol if present
 const parseRemotePatterns = (patterns) => {
-  if (!patterns) return [{ protocol: 'http', hostname: '' }];
+  if (!patterns) return [{ protocol: 'http', hostname: 'default-domain.com' }];
 
   const patternList = patterns.split(',');
   return patternList.map(pattern => {
     pattern = pattern.trim();
-    // Check if pattern includes http:// or https://
-    if (pattern.startsWith('http://') || pattern.startsWith('https://')) {
+    if (!pattern) return null; // 忽略空字符串
+
+    try {
+      // 尝试解析为 URL
       const url = new URL(pattern);
       return {
         protocol: url.protocol.replace(':', ''),
         hostname: url.hostname
       };
+    } catch {
+      // 如果解析失败，返回默认值
+      return {
+        protocol: 'http',
+        hostname: pattern
+      };
     }
-
-    // Default to http if no protocol specified
-    return {
-      protocol: 'http',
-      hostname: pattern
-    };
-  });
+  }).filter(Boolean); // 过滤掉无效的条目
 };
 
 const remotePatterns = parseRemotePatterns(process.env.NEXT_PUBLIC_REMOTE_PATTERNS);
