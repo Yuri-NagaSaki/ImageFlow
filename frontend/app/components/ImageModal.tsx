@@ -87,7 +87,7 @@ export default function ImageModal({ image, isOpen, onClose, onDelete }: ImageMo
               </div>
 
               {/* 图片信息区域 */}
-              <div className="w-full md:w-1/2 p-4 flex flex-col h-full md:h-[380px]">
+              <div className="w-full md:w-1/2 p-4 flex flex-col h-full md:h-[440px]">
                 <div className="flex flex-col h-full">
                   <ImageInfo image={image} />
                   <ImageUrls image={image} />

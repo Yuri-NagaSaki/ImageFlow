@@ -276,6 +276,7 @@ func UploadHandler(cfg *config.Config) http.HandlerFunc {
 						Tags:       tags,
 						URLs: map[string]string{
 							"original": getPublicURL(originalKey),
+							"auto":     "",
 							"webp":     "",
 							"avif":     "",
 						},
@@ -371,8 +372,10 @@ func UploadHandler(cfg *config.Config) http.HandlerFunc {
 					metadata.ExpiryTime = expiryTime
 				}
 
+				autoURL := filepath.Join("auto/image/", originalKey)
+
 				metadata.Paths.Original = originalKey
-				metadata.Paths.Auto = filepath.Join("auto/image/", originalKey)
+				metadata.Paths.Auto = autoURL
 				if webpURL != originalURL {
 					metadata.Paths.WebP = filepath.Join(orientation, "webp", imageID+".webp")
 				}
@@ -397,6 +400,7 @@ func UploadHandler(cfg *config.Config) http.HandlerFunc {
 					Tags:        tags,
 					URLs: map[string]string{
 						"original": originalURL,
+						"auto":     autoURL,
 						"webp":     webpURL,
 						"avif":     avifURL,
 					},
