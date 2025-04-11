@@ -35,6 +35,7 @@ export const ImageUrls = ({ image }: ImageUrlsProps) => {
   };
 
   const originalUrl = getFullUrl(image.urls?.original || "");
+  const autoUrl = getFullUrl(image.urls?.auto || "");
   const webpUrl = getFullUrl(image.urls?.webp || "");
   const avifUrl = getFullUrl(image.urls?.avif || "");
   const currentFormatUrl =
@@ -143,6 +144,12 @@ export const ImageUrls = ({ image }: ImageUrlsProps) => {
       {/* 仅在非GIF图片时显示WebP和AVIF格式 */}
       {image.format.toLowerCase() !== "gif" && (
         <>
+          <UrlBox
+            icon="text-purple-500"
+            label="自适应格式（Webp/Avif）"
+            url={autoUrl!}
+            type="auto"
+          />
           <UrlBox
             icon="text-purple-500"
             label="WebP格式"

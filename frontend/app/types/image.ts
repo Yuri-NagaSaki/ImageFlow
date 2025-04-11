@@ -7,9 +7,9 @@ export interface ImageData {
   expiryTime?: string
   urls?: {
     original: string
+    auto: string
     webp: string
     avif: string
-    auto: string
   }
   id?: string
   path?: string

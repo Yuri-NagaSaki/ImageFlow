@@ -17,6 +17,7 @@ interface ImageSidebarProps {
     expiryTime?: string;
     urls?: {
       original: string;
+      auto: string;
       webp: string;
       avif: string;
     };
@@ -42,6 +43,7 @@ export default function ImageSidebar({
     expiryTime?: string;
     urls?: {
       original: string;
+      auto: string;
       webp: string;
       avif: string;
     };

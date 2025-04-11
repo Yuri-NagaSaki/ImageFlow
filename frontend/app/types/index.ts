@@ -34,6 +34,7 @@ export interface ImageFile {
   height?: number;
   urls?: {
     original: string;
+    auto: string;
     webp: string;
     avif: string;
   };
@@ -92,6 +93,7 @@ export interface UploadResult {
   tags?: string[];
   urls?: {
     original: string;
+    auto: string;
     webp: string;
     avif: string;
   };
