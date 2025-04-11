@@ -9,6 +9,7 @@ export interface ImageData {
     original: string
     webp: string
     avif: string
+    auto: string
   }
   id?: string
   path?: string
