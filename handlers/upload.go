@@ -372,6 +372,7 @@ func UploadHandler(cfg *config.Config) http.HandlerFunc {
 				}
 
 				metadata.Paths.Original = originalKey
+				metadata.Paths.Auto = filepath.Join("auto/image/", originalKey)
 				if webpURL != originalURL {
 					metadata.Paths.WebP = filepath.Join(orientation, "webp", imageID+".webp")
 				}

@@ -25,6 +25,7 @@ type ImageMetadata struct {
 	Tags         []string  `json:"tags"`         // Image tags for categorization
 	Paths        struct {
 		Original string `json:"original"` // Path to original image
+		Auto     string `json:"auto"`     // Path to original image
 		WebP     string `json:"webp"`     // Path to WebP format
 		AVIF     string `json:"avif"`     // Path to AVIF format
 	} `json:"paths"`
