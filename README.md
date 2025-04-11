@@ -234,6 +234,7 @@ The system returns the most suitable image based on the device type and browser 
 
 | Endpoint | Method | Description | Parameters | Authentication |
 |----------|---------|-------------|------------|-------------|
+| `/auto/image/<original path>` | GET | Auto return Webp or AVIF image of original | None | Not required |
 | `/api/random` | GET | Get a random image | `tag`: Optional, filter by tag<br> | Not required |
 | `/api/upload` | POST | Upload new images | Form data, field name "images[]"<br>Optional: `expiryMinutes` (expiration time in minutes)<br>Optional: `tags` (array of tags) | API key required |
 | `/api/delete-image` | POST | Delete an image and all its formats | JSON with `id` and `storageType` | API key required |

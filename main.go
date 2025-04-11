@@ -139,8 +139,10 @@ func main() {
 	// Use appropriate random image handler based on storage type
 	if storageType == "s3" {
 		http.HandleFunc("/api/random", handlers.RandomImageHandler(utils.S3Client))
+		http.Handle("/auto/image/", http.StripPrefix("/auto/image/", http.HandlerFunc(handlers.S3AutoImageHandler(utils.S3Client))))
 	} else {
 		http.HandleFunc("/api/random", handlers.LocalRandomImageHandler())
+		http.Handle("/auto/image/", http.StripPrefix("/auto/image/", http.HandlerFunc(handlers.LocalAutoImageHandler())))
 		// Serve local images
 		localPath := os.Getenv("LOCAL_STORAGE_PATH")
 		if !filepath.IsAbs(localPath) {

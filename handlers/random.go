@@ -349,6 +349,7 @@ func LocalRandomImageHandler() http.HandlerFunc {
 						Orientation: orientation,
 						Paths: struct {
 							Original string `json:"original"`
+							Auto	 string `json:"auto"`
 							WebP     string `json:"webp"`
 							AVIF     string `json:"avif"`
 						}{

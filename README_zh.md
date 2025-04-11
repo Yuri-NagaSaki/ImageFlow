@@ -234,6 +234,7 @@ GET http://localhost:8686/api/random?tag=nature
 
 | 接口 | 方法 | 描述 | 参数 | 认证 |
 |----------|---------|-------------|------------|-------------|
+| `/auto/image/<original path>` | GET | 自适应获取 Webp 或 AVIF 图片 | 无 | 不需要 |
 | `/api/random` | GET | 获取随机图片 | `tag`：可选，按标签筛选<br> | 不需要 |
 | `/api/upload` | POST | 上传新图片 | Form 数据，字段名 "images[]"<br>可选参数：`expiryMinutes`（过期时间，分钟）<br>可选参数：`tags`（标签数组） | 需要 API 密钥 |
 | `/api/delete-image` | POST | 删除图片及其所有格式 | JSON 数据，包含 `id` 和 `storageType` | 需要 API 密钥 |
