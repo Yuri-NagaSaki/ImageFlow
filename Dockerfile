@@ -17,11 +17,10 @@ FROM oven/bun:1 AS frontend-builder
 
 WORKDIR /app/frontend
 
-COPY frontend/package.json frontend/bun.lockb* ./
+COPY frontend/ /app/frontend/
 
 RUN bun install --frozen-lockfile
 
-COPY frontend/ ./
 RUN bun run build
 
 FROM alpine:latest
