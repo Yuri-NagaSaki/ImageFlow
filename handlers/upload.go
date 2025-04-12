@@ -63,21 +63,20 @@ func determineImageOrientation(img image.Config) string {
 func UploadHandler(cfg *config.Config) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		workerSemaphore := make(chan struct{}, cfg.WorkerThreads)
-		log.Printf("Using %d parallel worker threads for image processing", cfg.WorkerThreads)
 
 		if r.Method != http.MethodPost {
 			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 			return
 		}
 
-		// Parse multipart form with default max upload size (32MB)
-		if err := r.ParseMultipartForm(32 << 20); err != nil {
-			http.Error(w, "Error parsing form", http.StatusBadRequest)
+		if err := r.ParseMultipartForm(10 << 20); err != nil { // 10 MB max memory
+			log.Printf("Error parsing multipart form: %v", err)
+			http.Error(w, "Invalid multipart form", http.StatusBadRequest)
 			return
 		}
-
 		// Get uploaded files
 		files := r.MultipartForm.File["images[]"]
+
 		if len(files) == 0 {
 			http.Error(w, "No files uploaded", http.StatusBadRequest)
 			return
@@ -118,6 +117,8 @@ func UploadHandler(cfg *config.Config) http.HandlerFunc {
 		var wgFiles sync.WaitGroup
 
 		for _, fileHeader := range files {
+			log.Printf("Uploading image: %s", fileHeader.Filename)
+
 			// Add each file to wait group
 			wgFiles.Add(1)
 
