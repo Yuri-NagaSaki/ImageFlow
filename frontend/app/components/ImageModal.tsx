@@ -81,13 +81,13 @@ export default function ImageModal({ image, isOpen, onClose, onDelete }: ImageMo
             <div className="flex flex-col md:flex-row">
               {/* 图片预览区域 */}
               <div className="relative w-full md:w-1/2 bg-gray-100 dark:bg-gray-800 flex items-center justify-center p-4">
-                <div className="relative w-full" style={{ height: '380px' }}>
+                <div className="relative w-full" style={{ height: '460px' }}>
                   <ImagePreview image={image} />
                 </div>
               </div>
 
               {/* 图片信息区域 */}
-              <div className="w-full md:w-1/2 p-4 flex flex-col h-full md:h-[440px]">
+              <div className="w-full md:w-1/2 p-4 flex flex-col h-full md:h-[460px]">
                 <div className="flex flex-col h-full">
                   <ImageInfo image={image} />
                   <ImageUrls image={image} />

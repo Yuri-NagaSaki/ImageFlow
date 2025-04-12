@@ -311,6 +311,7 @@ func getImageURLs(id string, orientation string, isGIF bool) map[string]string {
 	if isGIF {
 		originalKey := filepath.Join("gif", id+".gif")
 		urls["original"] = constructImageURL(originalKey)
+		urls["auto"] = urls["original"] // Fallback to original
 		urls["webp"] = urls["original"] // Fallback to original
 		urls["avif"] = urls["original"] // Fallback to original
 		return urls
@@ -327,6 +328,7 @@ func getImageURLs(id string, orientation string, isGIF bool) map[string]string {
 	// Construct original URL
 	originalKey := filepath.Join("original", orientation, id+originalExt)
 	urls["original"] = constructImageURL(originalKey)
+	urls["auto"] = fmt.Sprintf("/auto/image/%s", strings.ReplaceAll(originalKey, "\\", "/"))
 
 	// Construct URLs for converted formats
 	webpKey := filepath.Join(orientation, "webp", id+".webp")
